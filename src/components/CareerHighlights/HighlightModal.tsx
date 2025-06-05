@@ -79,7 +79,9 @@ const HighlightModal = ({ open, onClose, highlight }: HighlightModalProps) => {
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
             )}
-            <h3 className="text-2xl font-bold mb-3">{highlight.title}</h3>
+            <h3 className="text-2xl font-bold mb-3 text-black">
+              {highlight.title}
+            </h3>
 
             {/* Section 1: Description */}
             <div className="mb-6">
@@ -110,7 +112,7 @@ const HighlightModal = ({ open, onClose, highlight }: HighlightModalProps) => {
                 {highlight.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                    className="px-3 py-1 bg-gray-100 rounded-full text-sm text-black"
                   >
                     {tech}
                   </span>
