@@ -4,8 +4,6 @@ import type { NextConfig } from "next";
  */
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/liquidlx.github.io",
-  trailingSlash: true,
 };
 
 module.exports = nextConfig;
