@@ -6,9 +6,8 @@ import DownloadCVButton from "@/components/ui/DownloadCVButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Backend Software Engineer Portfolio",
-  description:
-    "Professional portfolio showcasing backend development expertise",
+  title: "Leonardo Collatto - Senior Software Engineer",
+  description: "Professional portfolio by Leonardo Collatto.",
 };
 
 export default function RootLayout({
