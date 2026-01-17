@@ -2,10 +2,32 @@ import type { TimelineItem } from "./types";
 
 export const timelineData: TimelineItem[] = [
   {
+    company: "Deel",
+    companyUrl: "https://www.deel.com/",
+    role: "Backend Engineer",
+    period: "July 2025 – Present",
+    description:
+      "Working on backend services for time-off and payroll systems at Deel, focusing on performance optimization, real-time data processing and system reliability.",
+    achievements: [
+      "Prevented recurring deadlocks in the codebase using advisory lock technique in a reusable way",
+      "Improved performance by 30% querying time off related data to payroll report",
+      "Collaborated with team on time-off payroll optimization, creating features, tests, and improving performance",
+      "Building a real-time data processing pipeline for payroll processing related to time-off data",
+    ],
+    technologies: [
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Jest",
+    ],
+  },
+  {
     company: "Everest Systems",
     companyUrl: "https://www.everest-systems.com/",
     role: "Senior Software Engineer",
-    period: "Jan 2023 – Present",
+    period: "Jan 2023 – June 2025",
     description:
       "Working on core platform services for a large-scale ERP system, focusing on extensible architecture and automation tools.",
     achievements: [
