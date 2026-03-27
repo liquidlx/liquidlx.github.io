@@ -3,11 +3,16 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import DownloadCVButton from "@/components/ui/DownloadCVButton";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Leonardo Collatto - Senior Software Engineer",
-  description: "Professional portfolio by Leonardo Collatto.",
+  title: "Leonardo Collatto — Backend Software Engineer",
+  description:
+    "Backend engineer building reliable systems. Portfolio, side projects, and experience.",
 };
 
 export default function RootLayout({
@@ -16,8 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-white text-black antialiased`}>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased">
+        <div className="grain" aria-hidden />
         {children}
         <DownloadCVButton />
       </body>

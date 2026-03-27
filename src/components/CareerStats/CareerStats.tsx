@@ -1,38 +1,53 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const stats = [
   {
-    value: "7+",
-    label: "Years of Experience",
-    description: "in software development",
+    value: "8+",
+    label: "Years of experience",
+    description: "From startups to scaleups to enterprise.",
   },
   {
     value: "6+",
-    label: "Countries",
+    label: "Countries & regions",
     description:
-      "Collaborated with teams in USA, Germany, UK, Colombia, Mexico, Brazil and more.",
+      "USA, Germany, UK, Colombia, Mexico, Brazil, and more — async-first.",
   },
   {
     value: "5+",
-    label: "Industries Worked In",
-    description: "AdTech, ERP, SaaS, Construction Tech, Developer Tools",
+    label: "Industries",
+    description:
+      "HR, ERP, SaaS, AdTech, construction tech, developer tools, and more.",
   },
 ];
 
 const CareerStats = () => (
-  <section className="py-12 bg-gray-100">
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        {stats.map((stat) => (
-          <div key={stat.label} className="p-8 flex flex-col items-center">
-            <div className="text-5xl md:text-6xl font-thin-500 text-black font-mono mb-2">
+  <section className="border-t border-[var(--border)] bg-[var(--bg)] py-20 sm:py-24">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <p className="section-label mb-3 text-center sm:text-left">
+        By the numbers
+      </p>
+      <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.45, delay: i * 0.06 }}
+            className="flex flex-col items-center bg-[var(--bg-elevated)] p-10 text-center md:items-start md:text-left"
+          >
+            <div className="text-5xl font-semibold tabular-nums tracking-tight text-[var(--fg)] md:text-6xl">
               {stat.value}
             </div>
-            <div className="text-base font-semibold text-gray-700 mb-1">
+            <div className="mt-3 text-sm font-medium text-[var(--fg)]">
               {stat.label}
             </div>
-            <div className="text-sm text-gray-500">{stat.description}</div>
-          </div>
+            <div className="mt-2 max-w-xs text-sm leading-relaxed text-[var(--fg-muted)]">
+              {stat.description}
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>

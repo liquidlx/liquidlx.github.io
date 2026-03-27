@@ -12,126 +12,114 @@ type HighlightModalProps = {
 const HighlightModal = ({ open, onClose, highlight }: HighlightModalProps) => {
   useEffect(() => {
     if (open) {
-      // Disable scroll on the body
       document.body.style.overflow = "hidden";
-      // Add padding to prevent layout shift
       document.body.style.paddingRight = "var(--scrollbar-width)";
     } else {
-      // Re-enable scroll on the body
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
     }
-
-    // Cleanup function to ensure scroll is re-enabled if component unmounts
     return () => {
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
     };
   }, [open]);
 
-  if (!open || !highlight) return null;
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-      >
+      {open && highlight ? (
         <motion.div
-          className="relative bg-white shadow-2xl rounded-2xl p-8 max-w-2xl w-full flex flex-col overflow-hidden md:max-h-[90vh] h-full md:h-auto md:mx-4"
-          initial={{ scale: 0.95, y: 40 }}
-          animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.95, y: 40 }}
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--fg)]/25 p-4 backdrop-blur-[2px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg hover:bg-white transition-colors"
-            aria-label="Close"
+          <motion.div
+            className="relative flex max-h-[min(90vh,720px)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[0_24px_80px_-24px_rgba(24,24,27,0.2)]"
+            initial={{ scale: 0.98, y: 16 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.98, y: 16 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <button
+              onClick={onClose}
+              className="absolute right-4 top-4 z-10 rounded-full border border-[var(--border)] bg-[var(--bg-muted)] p-2 text-[var(--fg-muted)] transition-colors hover:bg-[var(--bg)] hover:text-[var(--fg)]"
+              aria-label="Close"
+              type="button"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
 
-          {/* Scrollable content */}
-          <div className="overflow-y-auto h-full md:max-h-[calc(90vh-4rem)] pr-2">
-            {highlight.imageUrl && (
-              <Image
-                width={100}
-                height={100}
-                src={highlight.imageUrl}
-                alt={highlight.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-            )}
-            <h3 className="text-2xl font-bold mb-3 text-black">
-              {highlight.title}
-            </h3>
-
-            {/* Section 1: Description */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold mb-1 text-gray-800">
-                Description
-              </h4>
-              <p className="text-gray-700">{highlight.description}</p>
-            </div>
-
-            {/* Section 2: Technical Details */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">
-                Technical Details
-              </h4>
-              <ul className="list-disc list-inside space-y-1 text-gray-700">
-                {highlight.details.map((detail, index) => (
-                  <li key={index}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Section 3: Tech Stack */}
-            <div className="mt-auto pt-4 border-t border-gray-200">
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">
-                Tech Stack
-              </h4>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {highlight.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-gray-100 rounded-full text-sm text-black"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              {highlight.demoLink && (
-                <a
-                  href={highlight.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
-                >
-                  View Demo
-                </a>
+            <div className="overflow-y-auto p-6 pb-8 pt-14 sm:p-8 sm:pt-16">
+              {highlight.imageUrl && (
+                <Image
+                  width={100}
+                  height={100}
+                  src={highlight.imageUrl}
+                  alt={highlight.title}
+                  className="mb-4 h-48 w-full rounded-lg border border-[var(--border)] object-cover"
+                />
               )}
+              <h3 className="mb-4 text-2xl font-semibold tracking-tight text-[var(--fg)]">
+                {highlight.title}
+              </h3>
+
+              <div className="mb-6">
+                <h4 className="section-label mb-2">Description</h4>
+                <p className="text-sm leading-relaxed text-[var(--fg-muted)]">
+                  {highlight.description}
+                </p>
+              </div>
+
+              <div className="mb-6">
+                <h4 className="section-label mb-2">Technical details</h4>
+                <ul className="list-inside list-disc space-y-2 text-sm text-[var(--fg-muted)]">
+                  {highlight.details.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-auto border-t border-[var(--border)] pt-6">
+                <h4 className="section-label mb-3">Tech stack</h4>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {highlight.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-[var(--border)] bg-[var(--bg-muted)] px-3 py-1 text-xs font-medium text-[var(--fg)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                {highlight.demoLink && (
+                  <a
+                    href={highlight.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                  >
+                    View demo
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      ) : null}
     </AnimatePresence>
   );
 };
