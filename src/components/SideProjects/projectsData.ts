@@ -29,7 +29,7 @@ export const sideProjects: SideProject[] = [
     name: "Reforge",
     tagline: "Before you get paged, we're already on it.",
     description:
-      "Incident awareness and response UX — calm visuals for high-stakes on-call work.",
+      "The moment an incident fires, Reforge starts working — gathering context, generating a fix, asking the right questions. You step in to review, not to start from scratch.",
     url: "https://reforge-frontend.vercel.app/",
     accent: "#f4f4f5",
     preview: "reforge",
